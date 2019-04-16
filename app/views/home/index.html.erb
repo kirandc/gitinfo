@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col">
+    <h4 class="ml-3 mt-3 mb-3">
+      Github Pull Request list 
+    </h4>
+  </div>
+  <table class="table table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col"> ID</th>
+        <th scope="col"> User</th>
+        <th scope="col"> Assignees</th>
+        <th scope="col"> Requester</th>
+        <th scope="col"> Labels</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @response.each do |response| %>
+        <tr>
+          <td><%= response['id'] %>
+          <td><%= response['user']['login'] %>
+          <td><%= response['assignees'].first['login'] if response['assignees'].present?%>
+          <td><%= response['requested_reviewers'].first['login'] if response['requested_reviewers'].present?%>
+          <td><%= response['labels'].first['name'] if response['labels'].present?  %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
